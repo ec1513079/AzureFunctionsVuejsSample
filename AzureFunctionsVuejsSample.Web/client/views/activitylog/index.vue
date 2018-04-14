@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="activitylog">
     <div class="tile is-ancestor">
       <div class="tile is-parent">
         <article class="tile is-child box">
@@ -195,25 +195,36 @@ export default {
 </script>
 
 <style lang="scss">
-.vgt-table {
-  tbody {
-    tr {
-      height: 60px;
+.activitylog {
+  .tile.is-parent {
+    width: 100%;
+
+    .tile.is-child {
+      width: 100%;
+    }
+  }
+
+  .vgt-table {
+    tbody {
+      tr {
+        height: 60px;
+      }
+    }
+  }
+
+  .vgt-wrap {
+    margin-bottom: 10px;
+  }
+
+  .message.is-danger {
+    span.icon {
+      display:none
+    }
+
+    .message-body {
+      min-width: 400px;
     }
   }
 }
 
-.vgt-wrap {
-  margin-bottom: 10px;
-}
-
-.message.is-danger {
-  span.icon {
-    display:none
-  }
-
-  .message-body {
-    min-width: 400px;
-  }
-}
 </style>
