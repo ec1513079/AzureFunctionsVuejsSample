@@ -1,12 +1,12 @@
 {
   "name": "knowledgebase-admin",
-  "version": "0.5.3",
+  "version": "0.0.1",
   "description": "Hackfest KnowledgeBase Admin Panel",
-  "repository": "",
-  "homepage": "",
+  "repository": "https://github.com/ec1513079/AzureFunctionsVuejsSample.git",
+  "homepage": "https://github.com/ec1513079/AzureFunctionsVuejsSample",
   "author": {
-    "name": "Kotaro Takahashi",
-    "email": "kotakahashi@tech.softbank.co.jp"
+    "name": "ec1513079",
+    "email": "ec1513079@gmail.com"
   },
   "keywords": [
     "admin",
