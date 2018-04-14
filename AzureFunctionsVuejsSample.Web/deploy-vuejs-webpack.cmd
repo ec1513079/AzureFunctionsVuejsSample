@@ -84,9 +84,11 @@ goto end
 :ExecuteCmd
 setlocal
 set _CMD_=%*
-pushd "%DEPLOYMENT_SOURCE%"
+pushd %~dp0%
+echo %CD%
 call %_CMD_%
 popd
+echo %CD%
 if "%ERRORLEVEL%" NEQ "0" echo Failed exitCode=%ERRORLEVEL%, command=%_CMD_%
 exit /b %ERRORLEVEL%
 
