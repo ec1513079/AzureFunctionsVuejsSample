@@ -3,15 +3,15 @@
     <div class="tile is-parent">
       <article class="tile is-child box">
         <h1 class="title">Indexers</h1>
-          <div class="columns is-multiline is-mobile">
-            <div class="column is-half is-offset-one-quarter">
-              <button class="button is-primary has-text-centered"
-                :class="{'is-loading': this.isRunning}"
-                @click="notImpl">
-                <span>hackfest-kb-ds-indexerを実行します</span>
-              </button>
-            </div>
+        <div class="columns is-multiline is-mobile">
+          <div class="column is-half is-offset-one-quarter">
+            <button class="button is-primary has-text-centered"
+              :class="{'is-loading': this.isRunning}"
+              @click="notImpl">
+              <span>hackfest-kb-ds-indexerを実行します</span>
+            </button>
           </div>
+        </div>
       </article>
     </div>
   </div>

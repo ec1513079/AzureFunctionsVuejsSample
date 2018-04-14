@@ -30,6 +30,19 @@
         </article>
       </div>
     </div>
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <h1 class="title">Account Settings</h1>
+          <a class="button is-primary" href="/.auth/logout">
+            <span class="icon">
+              <i class="fa fa-sign-out"></i>
+            </span>
+            <span>Logout</span>
+          </a>
+        </article>
+      </div>
+    </div>
   </div>
 </template>
 
