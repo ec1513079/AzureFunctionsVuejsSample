@@ -57,7 +57,7 @@ echo Handling Vue webpack deployment.
 
 :: 1. Install npm dependencies for app and build
 echo 1. Installing npm packages for app and build in %~dp0% 
-call :ExecuteCmd npm --prefix ".\%PROJECT%" install ".\%PROJECT%"
+call :ExecuteCmd npm --prefix ".\%PROJECT%" install ".\%PROJECT%" --no-bin-links
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 2. Build
