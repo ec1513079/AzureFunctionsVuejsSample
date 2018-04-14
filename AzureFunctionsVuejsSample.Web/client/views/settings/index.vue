@@ -16,15 +16,15 @@
     <div class="tile is-ancestor">
       <div class="tile is-parent">
         <article class="tile is-child box">
-          <h1 class="title">Azure Search Settings</h1>
+          <h1 class="title">Azure Functions Settings</h1>
           <div class="block">
             <p class="control">
-              <label class="label">Service Name</label>
-              <input class="input is-medium" type="text" :value="searchEndpoint" placeholder="Azure Search Service Name" readonly>
+              <label class="label">Functions Endpoint</label>
+              <input class="input is-medium" type="text" :value="searchEndpoint" placeholder="Azure Functions Endpoint" readonly>
             </p>
             <p class="control">
-              <label class="label">Service API Key</label>
-              <input class="input is-medium" type="text" :value="searchKey" placeholder="Azure Search Service API Key" readonly>
+              <label class="label">Functions API Key</label>
+              <input class="input is-medium" type="text" :value="searchKey" placeholder="Azure Functions API Key" readonly>
             </p>
           </div>
         </article>
@@ -52,8 +52,8 @@ export default {
   data () {
     return {
       tableStorageConnectionStr: process.env.AZURE_STORAGE_CONNECTION_STRING,
-      searchEndpoint: process.env.AZURE_SEARCH_ENDPOINT,
-      searchKey: process.env.AZURE_SEARCH_KEY
+      searchEndpoint: process.env.AZURE_FUNCTIONS_ENDPOINT,
+      searchKey: process.env.AZURE_FUNCTIONS_API_KEY
     }
   }
 

@@ -47,8 +47,8 @@ export default {
     runIndexer (indexer) {
       return new Promise((resolve, reject) => {
         var client = AzureSearch({
-          url: process.env.AZURE_SEARCH_ENDPOINT,
-          key: process.env.AZURE_SEARCH_KEY
+          url: process.env.AZURE_FUNCTIONS_ENDPOINT,
+          key: process.env.AZURE_FUNCTIONS_API_KEY
         })
         console.log(client)
         client.runIndexer(indexer, function (err) {

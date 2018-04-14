@@ -3,6 +3,6 @@
 module.exports = {
   NODE_ENV: '"production"',
   AZURE_STORAGE_CONNECTION_STRING: '""',
-  AZURE_SEARCH_ENDPOINT: '""',
-  AZURE_SEARCH_KEY: '""'
+  AZURE_FUNCTIONS_ENDPOINT: '""',
+  AZURE_FUNCTIONS_API_KEY: '""'
 }
