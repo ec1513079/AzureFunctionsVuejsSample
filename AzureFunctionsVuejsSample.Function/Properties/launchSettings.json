@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AzureFunctionsVuejsSample.Function": {
+      "commandName": "Project",
+      "commandLineArgs": "host start * --cors * --pause-on-error"
+    }
+  }
+}

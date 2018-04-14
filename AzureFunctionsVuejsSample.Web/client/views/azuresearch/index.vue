@@ -7,7 +7,7 @@
           <div class="column is-half is-offset-one-quarter">
             <button class="button is-primary has-text-centered"
               :class="{'is-loading': this.isRunning}"
-              @click="notImpl">
+              @click="runIndexer('hackfest-kb-ds-indexer')">
               <span>hackfest-kb-ds-indexerを実行します</span>
             </button>
           </div>
@@ -19,8 +19,8 @@
 
 <script>
 import Vue from 'vue'
+import Axios from 'axios'
 import Tooltip from 'vue-bulma-tooltip'
-import AzureSearch from 'azure-search'
 import Message from 'vue-bulma-message'
 
 const MessageComponent = Vue.extend(Message)
@@ -45,28 +45,24 @@ export default {
 
   methods: {
     runIndexer (indexer) {
-      return new Promise((resolve, reject) => {
-        var client = AzureSearch({
-          url: process.env.AZURE_FUNCTIONS_ENDPOINT,
-          key: process.env.AZURE_FUNCTIONS_API_KEY
-        })
-        console.log(client)
-        client.runIndexer(indexer, function (err) {
-          if (err) {
-            console.log(err)
-            reject(err)
-          } else {
-            console.log('done!')
-            resolve('done!')
-          }
-        })
-      })
+      var apiUrl = process.env.AZURE_FUNCTIONS_ENDPOINT + '/api/AzureSearchIndexerRun' + '?indexer=' + indexer + '&' + process.env.AZURE_FUNCTIONS_API_KEY
+      Axios.get(apiUrl)
       .then((data) => {
+        console.log(data)
         this.isRunning = false
-      })
-      .catch((err) => {
-        console.log(err)
+        openMessage({
+          title: '実行をリクエストしました',
+          message: JSON.stringify(data),
+          type: 'info'
+        })
+      }).catch((error) => {
+        console.log(error)
         this.isRunning = false
+        openMessage({
+          title: '実行に失敗しました',
+          message: JSON.stringify(error),
+          type: 'danger'
+        })
       })
     },
 
