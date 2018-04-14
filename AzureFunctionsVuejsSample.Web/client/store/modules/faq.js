@@ -93,6 +93,7 @@ const FaqModule = {
         deepCopy.Question = replaceCRLFtoBR(deepCopy.Question || '')
         deepCopy.Answer = replaceCRLFtoBR(deepCopy.Answer || '')
         deepCopy.Remark = replaceCRLFtoBR(deepCopy.Remark || '')
+        deepCopy.IsDeleted = false
         tableService.insertOrReplaceEntity(FAQ_STORAGE_TABLE_NAME, deepCopy, function (error, result, response) {
           if (error) {
             reject(error)
