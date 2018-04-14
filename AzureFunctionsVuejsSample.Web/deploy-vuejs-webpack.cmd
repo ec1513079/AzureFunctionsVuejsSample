@@ -57,12 +57,12 @@ echo Handling Vue webpack deployment.
 
 :: 1. Install npm dependencies for app and build
 echo 1. Installing npm packages for app and build in %~dp0% 
-call :ExecuteCmd npm --prefix ".\%PROJECT%" install ".\%PROJECT%" --no-bin-links
+call :ExecuteCmd npm --prefix "%DEPLOYMENT_SOURCE%" install "%DEPLOYMENT_SOURCE%" --no-bin-links
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 2. Build
 echo 2. Building app 
-call :ExecuteCmd npm --prefix ".\%PROJECT%" run build --cwd ".\%PROJECT%"
+call :ExecuteCmd npm --prefix "%DEPLOYMENT_SOURCE%" run build --cwd "%DEPLOYMENT_SOURCE%"
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 3. KuduSync dist directory files
