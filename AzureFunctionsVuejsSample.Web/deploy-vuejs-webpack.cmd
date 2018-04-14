@@ -55,11 +55,6 @@ IF NOT DEFINED KUDU_SYNC_CMD (
 :Deployment
 echo Handling Vue webpack deployment.
 
-:: 0. Change working dirctory
-echo 0. Change working dirctory from %CD%
-echo to %~dp0% 
-pushd %~dp0% 
-
 :: 1. Install npm dependencies for app and build
 echo 1. Installing npm packages for app and build in %~dp0% 
 call :ExecuteCmd npm install
@@ -84,11 +79,11 @@ goto end
 :ExecuteCmd
 setlocal
 set _CMD_=%*
-pushd %~dp0%
-echo %CD%
+:: 0. Change working dirctory
+echo Change working dirctory from %CD% to %~dp0% 
+pushd %~dp0% 
 call %_CMD_%
 popd
-echo %CD%
 if "%ERRORLEVEL%" NEQ "0" echo Failed exitCode=%ERRORLEVEL%, command=%_CMD_%
 exit /b %ERRORLEVEL%
 
