@@ -7,5 +7,5 @@ module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   AZURE_STORAGE_CONNECTION_STRING: '"UseDevelopmentStorage=true;"',
   AZURE_FUNCTIONS_ENDPOINT: '"http://localhost:7071"',
-  AZURE_FUNCTIONS_API_KEY: '""'
+  AZURE_FUNCTIONS_API_KEY: '"code=XXXXXXXXXXXXXXXXXXXX"'
 })
