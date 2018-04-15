@@ -34,7 +34,11 @@
       <div class="tile is-parent">
         <article class="tile is-child box">
           <h1 class="title">Account Settings</h1>
-          <a class="button is-primary" href="/.auth/logout">
+          <p class="control">
+            <label class="label">Logout Endpoint</label>
+            <input class="input is-medium" type="text" :value="logoutUrl" placeholder="Azure Functions Endpoint" readonly>
+          </p>
+          <a class="button is-primary" :href="logoutUrl">
             <span class="icon">
               <i class="fa fa-sign-out"></i>
             </span>
@@ -53,7 +57,8 @@ export default {
     return {
       tableStorageConnectionStr: process.env.AZURE_STORAGE_CONNECTION_STRING,
       searchEndpoint: process.env.AZURE_FUNCTIONS_ENDPOINT,
-      searchKey: process.env.AZURE_FUNCTIONS_API_KEY
+      searchKey: process.env.AZURE_FUNCTIONS_API_KEY,
+      logoutUrl: '/.auth/logout?post_logout_redirect_uri=' + encodeURIComponent(process.env.LOGOUT_REDIRECT_URL)
     }
   }
 
