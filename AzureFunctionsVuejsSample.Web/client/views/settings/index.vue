@@ -42,13 +42,13 @@
             <label class="label">Account</label>
           </p>
           <p class="control has-icon">
-            <input class="input is-medium" type="text" :value="account.name" placeholder="UserName" readonly>
+            <input class="input is-medium" type="text" v-model="account.name" placeholder="UserName" readonly>
             <span class="icon is-small">
               <i class="fa fa-user"></i>
             </span>
           </p>
           <p class="control has-icon">
-            <input class="input is-medium" type="email" :value="account.email" placeholder="Email" readonly>
+            <input class="input is-medium" type="email" v-model="account.email" placeholder="Email" readonly>
             <span class="icon is-small">
               <i class="fa fa-envelope"></i>
             </span>
@@ -89,10 +89,6 @@ export default {
   mounted () {
     const typName = 'name'
     const typEmail = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
-    // const testData = [{'user_claims':[
-    //   {'typ':typName,'val':'hogehoge'},
-    //   {'typ':typEmail,'val':'hogehoge@example.com'}
-    // ]}]
     Axios.get(this.authMeUrl)
     .then((data) => {
       console.log(data)
@@ -103,6 +99,16 @@ export default {
     })
     .catch((error) => {
       console.log(error)
+      /*
+      const testData = [{'user_claims':[
+        {'typ':'name', 'val':'hogehoge'},
+        {'typ':'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress', 'val':'hogehoge@example.com'}
+      ]}]
+      var name = JsonPath.query(testData, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
+      var email = JsonPath.query(testData, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
+      this.account.name = name
+      this.account.email = email
+      //*/
     })
   }
 }
