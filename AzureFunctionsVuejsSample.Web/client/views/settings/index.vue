@@ -54,6 +54,10 @@
             </span>
           </p>
           <p class="control">
+            <label class="label">JWT Token</label>
+            <input class="input is-medium" type="text" v-model="jwtToken" placeholder="JWT Token" readonly>
+          </p>
+          <p class="control">
             <label class="label">Logout Endpoint</label>
             <input class="input is-medium" type="text" :value="logoutUrl" placeholder="Logout Endpoint" readonly>
           </p>
@@ -82,6 +86,7 @@ export default {
       searchKey: process.env.AZURE_FUNCTIONS_API_KEY,
       authMeUrl: '/.auth/me',
       account: { name: '', email: '' },
+      jwtToken: '',
       logoutUrl: '/.auth/logout?post_logout_redirect_uri=' + encodeURIComponent(process.env.LOGOUT_REDIRECT_URL)
     }
   },
@@ -98,7 +103,10 @@ export default {
       var email = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
       console.log(typEmail)
       console.log(email)
-      this.account = { name: name, email: email }
+      var jwtToken = JsonPath.query(result.data, '$[0].id_token')
+      console.log('jwtToken')
+      console.log(jwtToken)
+      this.jwtToken = jwtToken
     })
     .catch((error) => {
       console.log(error)
