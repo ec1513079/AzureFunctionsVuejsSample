@@ -93,7 +93,11 @@ export default {
     .then((data) => {
       console.log(data)
       var name = JsonPath.query(data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
+      console.log(typName)
+      console.log(name)
       var email = JsonPath.query(data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
+      console.log(typEmail)
+      console.log(email)
       this.account.name = name
       this.account.email = email
     })
