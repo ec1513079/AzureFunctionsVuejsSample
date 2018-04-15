@@ -100,9 +100,11 @@ export default {
       var name = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
       console.log(typName)
       console.log(name)
+      this.account.name = name
       var email = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
       console.log(typEmail)
       console.log(email)
+      this.account.email = email
       var jwtToken = JsonPath.query(result.data, '$[0].id_token')
       console.log('jwtToken')
       console.log(jwtToken)
