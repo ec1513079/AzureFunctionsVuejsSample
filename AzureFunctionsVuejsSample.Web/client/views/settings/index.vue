@@ -70,7 +70,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import Axios from 'axios'
 import JsonPath from 'jsonpath'
 
@@ -91,12 +90,12 @@ export default {
     const typName = 'name'
     const typEmail = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
     Axios.get(this.authMeUrl)
-    .then((data) => {
-      console.log(data)
-      var name = JsonPath.query(data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
+    .then((result) => {
+      console.log(result)
+      var name = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
       console.log(typName)
       console.log(name)
-      var email = JsonPath.query(data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
+      var email = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
       console.log(typEmail)
       console.log(email)
       this.account = { name: name, email: email }
@@ -104,14 +103,14 @@ export default {
     .catch((error) => {
       console.log(error)
       /*
-      const testData = [{'user_claims':[
-        {'typ':'name', 'val':'hogehoge'},
-        {'typ':'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress', 'val':'hogehoge@example.com'}
-      ]}]
-      var name = JsonPath.query(testData, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
-      var email = JsonPath.query(testData, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
+      const result = {'data': [{'user_claims': [
+        {'typ': 'name', 'val': 'hogehoge'},
+        {'typ': 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress', 'val': 'hogehoge@example.com'}
+      ]}]}
+      var name = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
+      var email = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
       this.account = { name: name, email: email }
-      //*/
+      // */
     })
   }
 }
