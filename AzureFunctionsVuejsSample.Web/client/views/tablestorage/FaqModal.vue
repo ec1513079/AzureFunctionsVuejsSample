@@ -13,7 +13,7 @@
                   <i class="fa fa-times"></i>
                 </span>
               </a>
-              <a class="button is-primary level-item" :class="{'is-loading': this.$store.state.faq.isLoading}" @click="upsertClick">
+              <a class="button is-info level-item" :class="{'is-loading': this.$store.state.faq.isLoading}" @click="upsertClick">
                 <span class="icon">
                   <i class="fa fa-check"></i>
                 </span>
@@ -68,7 +68,7 @@
                 <i class="fa fa-times"></i>
               </span>
             </a>
-            <a class="button is-primary level-item" :class="{'is-loading': this.$store.state.faq.isLoading}" @click="upsertClick">
+            <a class="button is-info level-item" :class="{'is-loading': this.$store.state.faq.isLoading}" @click="upsertClick">
               <span class="icon">
                 <i class="fa fa-check"></i>
               </span>

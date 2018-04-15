@@ -35,8 +35,27 @@
         <article class="tile is-child box">
           <h1 class="title">Account Settings</h1>
           <p class="control">
+            <label class="label">Account Endpoint</label>
+            <input class="input is-medium" type="text" :value="authMeUrl" placeholder="AUTH Me Endpoint" readonly>
+          </p>
+          <p class="control">
+            <label class="label">Account</label>
+          </p>
+          <p class="control has-icon">
+            <input class="input is-medium" type="text" :value="account.name" placeholder="UserName" readonly>
+            <span class="icon is-small">
+              <i class="fa fa-user"></i>
+            </span>
+          </p>
+          <p class="control has-icon">
+            <input class="input is-medium" type="email" :value="account.email" placeholder="Email" readonly>
+            <span class="icon is-small">
+              <i class="fa fa-envelope"></i>
+            </span>
+          </p>
+          <p class="control">
             <label class="label">Logout Endpoint</label>
-            <input class="input is-medium" type="text" :value="logoutUrl" placeholder="Azure Functions Endpoint" readonly>
+            <input class="input is-medium" type="text" :value="logoutUrl" placeholder="Logout Endpoint" readonly>
           </p>
           <a class="button is-primary" :href="logoutUrl">
             <span class="icon">
@@ -51,6 +70,9 @@
 </template>
 
 <script>
+import Axios from 'axios'
+import JsonPath from 'jsonpath'
+
 export default {
 
   data () {
@@ -58,10 +80,31 @@ export default {
       tableStorageConnectionStr: process.env.AZURE_STORAGE_CONNECTION_STRING,
       searchEndpoint: process.env.AZURE_FUNCTIONS_ENDPOINT,
       searchKey: process.env.AZURE_FUNCTIONS_API_KEY,
+      authMeUrl: '/.auth/me',
+      account: { name: '', email: '' },
       logoutUrl: '/.auth/logout?post_logout_redirect_uri=' + encodeURIComponent(process.env.LOGOUT_REDIRECT_URL)
     }
-  }
+  },
 
+  mounted () {
+    const typName = 'name'
+    const typEmail = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
+    // const testData = [{'user_claims':[
+    //   {'typ':typName,'val':'hogehoge'},
+    //   {'typ':typEmail,'val':'hogehoge@example.com'}
+    // ]}]
+    Axios.get(this.authMeUrl)
+    .then((data) => {
+      console.log(data)
+      var name = JsonPath.query(data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
+      var email = JsonPath.query(data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
+      this.account.name = name
+      this.account.email = email
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
 }
 </script>
 
