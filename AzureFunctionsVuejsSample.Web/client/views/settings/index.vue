@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Axios from 'axios'
 import JsonPath from 'jsonpath'
 
@@ -98,8 +99,7 @@ export default {
       var email = JsonPath.query(data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
       console.log(typEmail)
       console.log(email)
-      this.account.name = name
-      this.account.email = email
+      this.account = { name: name, email: email }
     })
     .catch((error) => {
       console.log(error)
@@ -110,8 +110,7 @@ export default {
       ]}]
       var name = JsonPath.query(testData, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
       var email = JsonPath.query(testData, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
-      this.account.name = name
-      this.account.email = email
+      this.account = { name: name, email: email }
       //*/
     })
   }
