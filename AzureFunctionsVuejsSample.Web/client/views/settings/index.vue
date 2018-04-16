@@ -35,7 +35,7 @@
         <article class="tile is-child box">
           <h1 class="title">Account Settings</h1>
           <p class="control">
-            <label class="label">Account Endpoint</label>
+            <label class="label">Account Endpoint (FOR DEBUB)</label>
             <input class="input is-medium" type="text" :value="authMeUrl" placeholder="AUTH Me Endpoint" readonly>
           </p>
           <p class="control">
@@ -54,11 +54,11 @@
             </span>
           </p>
           <p class="control">
-            <label class="label">JWT Token</label>
+            <label class="label">JWT Token (FOR DEBUB)</label>
             <input class="input is-medium" type="text" v-model="jwtToken" placeholder="JWT Token" readonly>
           </p>
           <p class="control">
-            <label class="label">Logout Endpoint</label>
+            <label class="label">Logout Endpoint (FOR DEBUB)</label>
             <input class="input is-medium" type="text" :value="logoutUrl" placeholder="Logout Endpoint" readonly>
           </p>
           <a class="button is-primary" :href="logoutUrl">
