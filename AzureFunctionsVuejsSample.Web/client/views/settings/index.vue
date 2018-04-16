@@ -42,13 +42,13 @@
             <label class="label">Account</label>
           </p>
           <p class="control has-icon">
-            <input class="input is-medium" type="text" v-model="account.name" placeholder="UserName" readonly>
+            <input class="input is-medium" type="text" v-model="name" placeholder="UserName" readonly>
             <span class="icon is-small">
               <i class="fa fa-user"></i>
             </span>
           </p>
           <p class="control has-icon">
-            <input class="input is-medium" type="email" v-model="account.email" placeholder="Email" readonly>
+            <input class="input is-medium" type="email" v-model="email" placeholder="Email" readonly>
             <span class="icon is-small">
               <i class="fa fa-envelope"></i>
             </span>
@@ -74,9 +74,6 @@
 </template>
 
 <script>
-import Axios from 'axios'
-import JsonPath from 'jsonpath'
-
 export default {
 
   data () {
@@ -85,42 +82,16 @@ export default {
       searchEndpoint: process.env.AZURE_FUNCTIONS_ENDPOINT,
       searchKey: process.env.AZURE_FUNCTIONS_API_KEY,
       authMeUrl: '/.auth/me',
-      account: { name: '', email: '' },
-      jwtToken: '',
+      name: this.$store.state.authme.username,
+      email: this.$store.state.authme.email,
+      jwtToken: this.$store.state.authme.jwtToken,
       logoutUrl: '/.auth/logout?post_logout_redirect_uri=' + encodeURIComponent(process.env.LOGOUT_REDIRECT_URL)
     }
   },
 
   mounted () {
-    const typName = 'name'
-    const typEmail = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
-    Axios.get(this.authMeUrl)
-    .then((result) => {
-      console.log(result)
-      var name = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
-      console.log(typName)
-      console.log(name)
-      this.account.name = name
-      var email = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
-      console.log(typEmail)
-      console.log(email)
-      this.account.email = email
-      var jwtToken = JsonPath.query(result.data, '$[0].id_token')
-      console.log('jwtToken')
-      console.log(jwtToken)
-      this.jwtToken = jwtToken
-    })
-    .catch((error) => {
-      console.log(error)
-      /*
-      const result = {'data': [{'user_claims': [
-        {'typ': 'name', 'val': 'hogehoge'},
-        {'typ': 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress', 'val': 'hogehoge@example.com'}
-      ]}]}
-      var name = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
-      var email = JsonPath.query(result.data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
-      this.account = { name: name, email: email }
-      // */
+    this.$store.dispatch('authme/reloadAccount').catch((e) => {
+      console.log(e)
     })
   }
 }

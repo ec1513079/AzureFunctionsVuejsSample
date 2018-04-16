@@ -8,6 +8,7 @@ import app from './modules/app'
 import menu from './modules/menu'
 import faq from './modules/faq'
 import activitylog from './modules/activitylog'
+import authme from './modules/authme'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ const store = new Vuex.Store({
     app,
     menu,
     faq,
-    activitylog
+    activitylog,
+    authme
   },
   state: {
     pkg
