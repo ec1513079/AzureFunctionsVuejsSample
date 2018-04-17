@@ -74,8 +74,7 @@
     "vue-peity": "0.5.0",
     "vue-router": "^2.3.0",
     "vuex": "^2.2.1",
-    "vuex-router-sync": "^4.1.2",
-    "wysiwyg.css": "0.0.2"
+    "vuex-router-sync": "^4.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",

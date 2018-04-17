@@ -46,8 +46,13 @@ export default {
   methods: {
     runIndexer (indexer) {
       var apiUrl = process.env.AZURE_FUNCTIONS_ENDPOINT + '/api/AzureSearchIndexerRun' + '?indexer=' + indexer + '&' + process.env.AZURE_FUNCTIONS_API_KEY
-      Axios.get(apiUrl)
-      .then((data) => {
+      // Axios.get(apiUrl, {
+      //   headers: { 'Authorization': 'Bearer ' + this.$store.state.authme.jwtToken }
+      // })
+      this.$http({
+        url: apiUrl,
+        headers: { Authorization: 'Bearer ' + this.$store.state.authme.jwtToken }
+      }).then((data) => {
         console.log(data)
         this.isRunning = false
         openMessage({
