@@ -82,17 +82,18 @@ export default {
       searchEndpoint: process.env.AZURE_FUNCTIONS_ENDPOINT,
       searchKey: process.env.AZURE_FUNCTIONS_API_KEY,
       authMeUrl: '/.auth/me',
-      name: this.$store.state.authme.username,
-      email: this.$store.state.authme.email,
-      jwtToken: this.$store.state.authme.jwtToken,
       logoutUrl: '/.auth/logout?post_logout_redirect_uri=' + encodeURIComponent(process.env.LOGOUT_REDIRECT_URL)
     }
   },
 
+  computed: {
+    name: function () { return this.$store.state.authme.username },
+    email: function () { return this.$store.state.authme.email },
+    jwtToken: function () { return this.$store.state.authme.jwtToken }
+  },
+
   mounted () {
-    this.$store.dispatch('authme/reloadAccount').catch((e) => {
-      console.log(e)
-    })
+    this.$store.dispatch('authme/reloadAccount')
   }
 }
 </script>
