@@ -35,6 +35,15 @@ const state = {
       component: lazyLoading('activitylog', true)
     },
     {
+      name: 'Stock API',
+      path: '/stockapi',
+      meta: {
+        icon: 'fa-wrench',
+        link: 'stockapi/index.vue'
+      },
+      component: lazyLoading('stockapi', true)
+    },
+    {
       name: 'Settings',
       path: '/settings',
       meta: {
