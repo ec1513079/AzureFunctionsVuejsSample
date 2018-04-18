@@ -4,6 +4,7 @@ const path = require('path')
 const config = require('../config')
 const utils = require('./utils')
 const projectRoot = path.resolve(__dirname, '../')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -88,5 +89,9 @@ module.exports = {
   // See https://github.com/webpack/webpack/issues/3486
   performance: {
     hints: false
-  }
+  },
+  // See https://github.com/plotly/plotly-webpack
+  plugins: [
+    new webpack.IgnorePlugin(/vertx/)
+  ]
 }
