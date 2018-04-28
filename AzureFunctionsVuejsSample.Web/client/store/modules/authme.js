@@ -46,7 +46,10 @@ const AuthMeModule = {
     reloadAccount ({ commit }) {
       commit('clearAccount')
       Axios.get(authNomalUrl)
-      .then(Axios.get(authMeUrl))
+      .then((res) => {
+        console.log(res)
+        return Axios.get(authMeUrl)
+      })
       .then((res) => {
         console.log(res)
         let name = JsonPath.query(res.data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
@@ -56,7 +59,10 @@ const AuthMeModule = {
         commit('setAccount', { idToken: idToken, accessToken: accessToken, username: name, email: email })
         return Axios.get(authAdminUrl)
       })
-      .then(Axios.get(authMeUrl))
+      .then((res) => {
+        console.log(res)
+        Axios.get(authMeUrl)
+      })
       .then((res) => {
         console.log(res)
         let accessToken = JsonPath.query(res.data, '$[0].access_token')
