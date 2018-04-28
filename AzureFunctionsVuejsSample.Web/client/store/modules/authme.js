@@ -61,7 +61,7 @@ const AuthMeModule = {
       })
       .then((res) => {
         console.log(res)
-        Axios.get(authMeUrl)
+        return Axios.get(authMeUrl)
       })
       .then((res) => {
         console.log(res)
