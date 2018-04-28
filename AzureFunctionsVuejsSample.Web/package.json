@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "@websanova/vue-auth": "^2.8.2-beta",
-    "adal-angular": "^1.0.17",
     "animate.css": "3.5.2",
     "animejs": "^2.0.1",
     "axios": "^0.15.3",
