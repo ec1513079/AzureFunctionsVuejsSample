@@ -9,8 +9,9 @@ const typEmail = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailadd
 const adalConfig = {
   tenant: 'a675d6fd-ad83-4992-a2aa-b44e7bff428d',
   clientId: '71e9f5f1-01f0-4844-ab62-38da6605f05f',
-  cacheLocation: 'localStorage',
-  resourceId: '4fcd0472-bcb8-4620-8753-715829a72440'
+  resourceId: '4fcd0472-bcb8-4620-8753-715829a72440',
+  cacheLocation: 'sessionStorage',
+  cacheLocationKeyIdToken: 'adal.idtoken'
 }
 
 const AuthMeModule = {
@@ -58,14 +59,22 @@ const AuthMeModule = {
         let accessToken = JsonPath.query(res.data, '$[0].access_token')
         commit('setAccount', { idToken: idToken, accessToken: accessToken, username: name, email: email })
 
+        window.sessionStorage.setItem(adalConfig.cacheLocationKeyIdToken, idToken)
         let authenticationContext = new AuthenticationContext(adalConfig)
-        authenticationContext.acquireToken(adalConfig.resourceId, (error, token) => {
-          if (error || !token) {
+        authenticationContext.getUser((error, user) => {
+          if (error) {
             console.log(error)
-          } else {
+            return
+          }
+          console.log(user)
+          authenticationContext.acquireToken(adalConfig.resourceId, (error, token) => {
+            if (error || !token) {
+              console.log(error)
+              return
+            }
             console.log(token)
             commit('setAdalToken', token)
-          }
+          })
         })
       }).catch((error) => {
         console.log(error)
