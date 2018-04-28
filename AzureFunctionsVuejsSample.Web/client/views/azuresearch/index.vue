@@ -47,7 +47,7 @@ export default {
       var apiUrl = process.env.AZURE_FUNCTIONS_ENDPOINT + '/api/AzureSearchIndexerRun' + '?indexer=' + indexer + '&' + process.env.AZURE_FUNCTIONS_API_KEY
       this.$http({
         url: apiUrl,
-        headers: { Authorization: 'Bearer ' + this.$store.state.authme.jwtToken }
+        headers: { Authorization: 'Bearer ' + this.$store.state.authme.accessToken }
       }).then((data) => {
         console.log(data)
         this.isRunning = false

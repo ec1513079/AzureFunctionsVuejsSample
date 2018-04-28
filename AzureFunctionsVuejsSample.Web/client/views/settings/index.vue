@@ -7,7 +7,7 @@
           <div class="block">
             <label class="label">ConnectionString</label>
             <p class="control">
-              <input class="input is-medium" type="text" :value="tableStorageConnectionStr" placeholder="TableStorage ConnectionString" readonly>
+              <input class="input is-medium" type="text" :value="tableStorageConnectionStr" placeholder="TableStorage ConnectionString" disabled>
             </p>
           </div>
         </article>
@@ -20,11 +20,11 @@
           <div class="block">
             <p class="control">
               <label class="label">Functions Endpoint</label>
-              <input class="input is-medium" type="text" :value="searchEndpoint" placeholder="Azure Functions Endpoint" readonly>
+              <input class="input is-medium" type="text" :value="searchEndpoint" placeholder="Azure Functions Endpoint" disabled>
             </p>
             <p class="control">
               <label class="label">Functions API Key</label>
-              <input class="input is-medium" type="text" :value="searchKey" placeholder="Azure Functions API Key" readonly>
+              <input class="input is-medium" type="text" :value="searchKey" placeholder="Azure Functions API Key" disabled>
             </p>
           </div>
         </article>
@@ -36,30 +36,34 @@
           <h1 class="title">Account Settings</h1>
           <p class="control">
             <label class="label">Account Endpoint (FOR DEBUB)</label>
-            <input class="input is-medium" type="text" :value="authMeUrl" placeholder="AUTH Me Endpoint" readonly>
+            <input class="input is-medium" type="text" :value="authMeUrl" placeholder="AUTH Me Endpoint" disabled>
           </p>
           <p class="control">
             <label class="label">Account</label>
           </p>
           <p class="control has-icon">
-            <input class="input is-medium" type="text" v-model="name" placeholder="UserName" readonly>
+            <input class="input is-medium" type="text" v-model="name" placeholder="UserName" disabled>
             <span class="icon is-small">
               <i class="fa fa-user"></i>
             </span>
           </p>
           <p class="control has-icon">
-            <input class="input is-medium" type="email" v-model="email" placeholder="Email" readonly>
+            <input class="input is-medium" type="email" v-model="email" placeholder="Email" disabled>
             <span class="icon is-small">
               <i class="fa fa-envelope"></i>
             </span>
           </p>
           <p class="control">
-            <label class="label">JWT Token (FOR DEBUB)</label>
-            <input class="input is-medium" type="text" v-model="jwtToken" placeholder="JWT Token" readonly>
+            <label class="label">ID Token (FOR DEBUB)</label>
+            <input class="input is-medium" type="text" v-model="idToken" placeholder="ID Token" disabled>
+          </p>
+          <p class="control">
+            <label class="label">Access Token (FOR DEBUB)</label>
+            <input class="input is-medium" type="text" v-model="accessToken" placeholder="Access Token" disabled>
           </p>
           <p class="control">
             <label class="label">Logout Endpoint (FOR DEBUB)</label>
-            <input class="input is-medium" type="text" :value="logoutUrl" placeholder="Logout Endpoint" readonly>
+            <input class="input is-medium" type="text" :value="logoutUrl" placeholder="Logout Endpoint" disabled>
           </p>
           <a class="button is-primary" :href="logoutUrl">
             <span class="icon">
@@ -89,7 +93,8 @@ export default {
   computed: {
     name: function () { return this.$store.state.authme.username },
     email: function () { return this.$store.state.authme.email },
-    jwtToken: function () { return this.$store.state.authme.jwtToken }
+    idToken: function () { return this.$store.state.authme.idToken },
+    accessToken: function () { return this.$store.state.authme.accessToken }
   },
 
   mounted () {

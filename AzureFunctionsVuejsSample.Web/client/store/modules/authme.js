@@ -10,7 +10,8 @@ const AuthMeModule = {
 
   state () {
     return {
-      jwtToken: '',
+      idToken: '',
+      accessToken: '',
       username: '',
       email: ''
     }
@@ -18,7 +19,8 @@ const AuthMeModule = {
 
   mutations: {
     setAccount (state, payload) {
-      state.jwtToken = payload.token
+      state.idToken = payload.idToken
+      state.accessToken = payload.accessToken
       state.username = payload.username
       state.email = payload.email
     },
@@ -37,8 +39,9 @@ const AuthMeModule = {
       .then((res) => {
         let name = JsonPath.query(res.data, '$[0].user_claims[?(@.typ=="' + typName + '")].val')[0]
         let email = JsonPath.query(res.data, '$[0].user_claims[?(@.typ=="' + typEmail + '")].val')[0]
-        let token = JsonPath.query(res.data, '$[0].id_token')
-        commit('setAccount', { token: token, username: name, email: email })
+        let idToken = JsonPath.query(res.data, '$[0].id_token')
+        let accessToken = JsonPath.query(res.data, '$[0].access_token')
+        commit('setAccount', { idToken: idToken, accessToken: accessToken, username: name, email: email })
       }).catch((error) => {
         console.log(error)
       })
