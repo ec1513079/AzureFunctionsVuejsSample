@@ -1,9 +1,17 @@
 import Axios from 'axios'
 import JsonPath from 'jsonpath'
+import AuthenticationContext from 'adal-angular/lib/adal.js'
 
 const authMeUrl = '/.auth/me'
 const typName = 'name'
 const typEmail = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
+
+const adalConfig = {
+  tenant: 'a675d6fd-ad83-4992-a2aa-b44e7bff428d',
+  clientId: '71e9f5f1-01f0-4844-ab62-38da6605f05f',
+  cacheLocation: 'localStorage',
+  resourceId: '4fcd0472-bcb8-4620-8753-715829a72440'
+}
 
 const AuthMeModule = {
   namespaced: true,
@@ -13,7 +21,8 @@ const AuthMeModule = {
       idToken: '',
       accessToken: '',
       username: '',
-      email: ''
+      email: '',
+      adalToken: ''
     }
   },
 
@@ -25,10 +34,16 @@ const AuthMeModule = {
       state.email = payload.email
     },
 
+    setAdalToken (state, payload) {
+      state.adalToken = payload
+    },
+
     clearAccount (state) {
-      state.jwtToken = ''
+      state.idToken = ''
+      state.accessToken = ''
       state.username = ''
       state.email = ''
+      state.adalToken = ''
     }
   },
 
@@ -42,6 +57,16 @@ const AuthMeModule = {
         let idToken = JsonPath.query(res.data, '$[0].id_token')
         let accessToken = JsonPath.query(res.data, '$[0].access_token')
         commit('setAccount', { idToken: idToken, accessToken: accessToken, username: name, email: email })
+
+        let authenticationContext = new AuthenticationContext(adalConfig)
+        authenticationContext.acquireToken(adalConfig.resourceId, (error, token) => {
+          if (error || !token) {
+            console.log(error)
+          } else {
+            console.log(token)
+            commit('setAdalToken', token)
+          }
+        })
       }).catch((error) => {
         console.log(error)
       })

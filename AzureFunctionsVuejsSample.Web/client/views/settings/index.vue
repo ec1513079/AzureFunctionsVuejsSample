@@ -62,6 +62,10 @@
             <input class="input is-medium" type="text" v-model="accessToken" placeholder="Access Token" disabled>
           </p>
           <p class="control">
+            <label class="label">ADAL Token (FOR DEBUB)</label>
+            <input class="input is-medium" type="text" v-model="adalToken" placeholder="ADAL Token" disabled>
+          </p>
+          <p class="control">
             <label class="label">Logout Endpoint (FOR DEBUB)</label>
             <input class="input is-medium" type="text" :value="logoutUrl" placeholder="Logout Endpoint" disabled>
           </p>
@@ -94,7 +98,8 @@ export default {
     name: function () { return this.$store.state.authme.username },
     email: function () { return this.$store.state.authme.email },
     idToken: function () { return this.$store.state.authme.idToken },
-    accessToken: function () { return this.$store.state.authme.accessToken }
+    accessToken: function () { return this.$store.state.authme.accessToken },
+    adal: function () { return this.$store.state.authme.adalToken }
   },
 
   mounted () {
