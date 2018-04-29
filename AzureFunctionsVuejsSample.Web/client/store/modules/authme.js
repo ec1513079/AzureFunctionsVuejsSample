@@ -1,3 +1,14 @@
+/*
+Azure App Serviceの"Authentication and Authorization"を利用してAPIへのアクセストークンを取得する
+"Authentication and Authorization"の使い方は下記を参照すること
+
+チュートリアル: Azure App Service でユーザーをエンド ツー エンドで認証および承認する
+ https://docs.microsoft.com/ja-jp/azure/app-service/app-service-web-tutorial-auth-aad
+
+Azure App Service での認証および承認
+ https://docs.microsoft.com/ja-jp/azure/app-service/app-service-authentication-overview
+*/
+
 import Axios from 'axios'
 import JsonPath from 'jsonpath'
 
