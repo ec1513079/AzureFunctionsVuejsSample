@@ -18,17 +18,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import Tooltip from 'vue-bulma-tooltip'
-import Message from 'vue-bulma-message'
-
-const MessageComponent = Vue.extend(Message)
-const openMessage = (propsData) => {
-  return new MessageComponent({
-    el: document.createElement('div'),
-    propsData
-  })
-}
 
 export default {
   components: {
@@ -51,27 +41,11 @@ export default {
       }).then((data) => {
         console.log(data)
         this.isRunning = false
-        openMessage({
-          title: '実行をリクエストしました',
-          message: JSON.stringify(data),
-          type: 'info'
-        })
+        this.$message.info('実行をリクエストしました', JSON.stringify(data))
       }).catch((error) => {
         console.log(error)
         this.isRunning = false
-        openMessage({
-          title: '実行に失敗しました',
-          message: JSON.stringify(error),
-          type: 'danger'
-        })
-      })
-    },
-
-    notImpl (params) {
-      openMessage({
-        title: '実装中',
-        message: '申し訳ありません！本機能はまだ実装されておりません',
-        type: 'warning'
+        this.$message.error('実行に失敗しました', JSON.stringify(error))
       })
     }
   }

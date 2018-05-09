@@ -65,6 +65,8 @@ export default {
 $fa-font-path: '~font-awesome/fonts/';
 @import '~font-awesome/scss/font-awesome';
 
+@import './plugins/MessageNotification.scss';
+
 html {
   background-color: whitesmoke;
 }

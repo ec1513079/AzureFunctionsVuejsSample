@@ -11,6 +11,7 @@ import * as filters from './filters'
 import { TOGGLE_SIDEBAR } from 'vuex-store/mutation-types'
 import VueGoodTable from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
+import MessageNotification from './plugins/MessageNotification'
 
 Vue.router = router
 Vue.use(VueAxios, axios)
@@ -33,6 +34,8 @@ Vue.use(VueAuth, {
 Vue.use(NProgress)
 
 Vue.use(VueGoodTable)
+
+Vue.use(MessageNotification)
 
 // Enable devtools
 Vue.config.devtools = true
