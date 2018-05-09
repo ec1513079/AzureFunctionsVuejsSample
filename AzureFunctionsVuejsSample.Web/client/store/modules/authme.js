@@ -16,8 +16,8 @@ const authMeUrl = '/.auth/me'
 const typName = 'name'
 const typEmail = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
 
-const authAdminUrl = '/.auth/refresh?resource=cf033fe2-52de-4843-9d0c-d334e7fbd327'
-const authNomalUrl = '/.auth/refresh?resource=4fcd0472-bcb8-4620-8753-715829a72440'
+const refreshAuthUrl = '/.auth/refresh?resource=' + process.env.AZURE_FUNCTIONS_AD_APPLICATION_ID
+const refreshAdminAuthUrl = '/.auth/refresh?resource=' + process.env.AZURE_FUNCTIONS_ADMIN_AD_APPLICATION_ID
 
 const AuthMeModule = {
   namespaced: true,
@@ -56,7 +56,7 @@ const AuthMeModule = {
   actions: {
     reloadAccount ({ commit }) {
       commit('clearAccount')
-      Axios.get(authNomalUrl)
+      Axios.get(refreshAuthUrl)
       .then((res) => {
         console.log(res)
         return Axios.get(authMeUrl)
@@ -68,7 +68,7 @@ const AuthMeModule = {
         let idToken = JsonPath.query(res.data, '$[0].id_token')
         let accessToken = JsonPath.query(res.data, '$[0].access_token')
         commit('setAccount', { idToken: idToken, accessToken: accessToken, username: name, email: email })
-        return Axios.get(authAdminUrl)
+        return Axios.get(refreshAdminAuthUrl)
       })
       .then((res) => {
         console.log(res)
