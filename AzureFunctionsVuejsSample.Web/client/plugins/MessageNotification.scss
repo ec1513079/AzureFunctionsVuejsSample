@@ -1,3 +1,5 @@
+@import '~bulma/sass/utilities/mixins';
+
 .messages {
   .message.is-danger,.message.is-warning {
     span.icon {
@@ -7,5 +9,9 @@
 
   .message-box {
     min-width: 400px;
+
+    @include mobile() {
+      min-width: 0px;
+    }
   }
 }

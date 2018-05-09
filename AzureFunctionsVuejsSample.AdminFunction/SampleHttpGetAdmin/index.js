@@ -7,9 +7,7 @@ module.exports = function (context, req) {
     headers: {
       'Content-Type': 'application/json; charset=utf-8'
     },
-    body: {
-      data: resMock
-    }
+    body: resMock
   }
   context.done()
 }
