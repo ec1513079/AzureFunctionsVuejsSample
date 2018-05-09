@@ -83,7 +83,7 @@ export default {
       this.$http({
         url: UrlJoin(
           process.env.AZURE_FUNCTIONS_API_ENDPOINT,
-          'aa' + apiName,
+          apiName,
           '?code=' + process.env.AZURE_FUNCTIONS_API_KEY),
         headers: { Authorization: 'Bearer ' + this.$store.state.authme.accessToken }
       }).then((data) => {
