@@ -29,10 +29,10 @@ npm install
 
 ## 構成
 ### クライアント
-* node >=
-* nmp >=
-* webpack >=
+* node >= 8.x
+* nmp >= 5.x
+* webpack >= 2.x
 ### サーバ
-* Visual Stadio 2017
-* [Azure Functions ツール](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-develop-vs#check-your-tools-version)
+* azure-functions-core-tools >= 1.0.12
+    * [Azure Functions Core Tools](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local)
 
