@@ -8,40 +8,13 @@ import lazyLoading from './lazyLoading'
 const state = {
   items: [
     {
-      name: 'FAQ Storage',
-      path: '/tablestorage',
+      name: 'API Sample',
+      path: '/functions',
       meta: {
-        icon: 'fa-database',
-        link: 'tablestorage/index.vue'
+        icon: 'fa-code',
+        link: 'functions/index.vue'
       },
-      component: lazyLoading('tablestorage', true)
-    },
-    {
-      name: 'Azure Search',
-      path: '/azuresearch',
-      meta: {
-        icon: 'fa-search',
-        link: 'azuresearch/index.vue'
-      },
-      component: lazyLoading('azuresearch', true)
-    },
-    {
-      name: 'Activity Log',
-      path: '/activitylog',
-      meta: {
-        icon: 'fa-dashboard',
-        link: 'activitylog/index.vue'
-      },
-      component: lazyLoading('activitylog', true)
-    },
-    {
-      name: 'Stock API',
-      path: '/stockapi',
-      meta: {
-        icon: 'fa-wrench',
-        link: 'stockapi/index.vue'
-      },
-      component: lazyLoading('stockapi', true)
+      component: lazyLoading('functions', true)
     },
     {
       name: 'Settings',

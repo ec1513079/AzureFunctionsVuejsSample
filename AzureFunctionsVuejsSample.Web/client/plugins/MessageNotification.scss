@@ -1,0 +1,11 @@
+.messages {
+  .message.is-danger,.message.is-warning {
+    span.icon {
+      display:none
+    }
+  }
+
+  .message-box {
+    min-width: 400px;
+  }
+}
