@@ -11,7 +11,7 @@
           <a class="nav-item hero-brand" href="/">
             <img src="~assets/logo.svg" :alt="pkginfo.description">
             <div class="is-hidden-mobile">
-              <span class="vue">KnowledgeBase</span><strong class="admin">Admin</strong>
+              <span class="vue is-title is-bold">{{ pkginfo.name.replace(/-/g, ' ') }}</span>
             </div>
           </a>
         </div>
@@ -61,6 +61,10 @@ export default {
 
 <style lang="scss">
 @import '~bulma/sass/utilities/variables';
+
+.is-title {
+  text-transform: capitalize;
+}
 
 .app-navbar {
   position: fixed;

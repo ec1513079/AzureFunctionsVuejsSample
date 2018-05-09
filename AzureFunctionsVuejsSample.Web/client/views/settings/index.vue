@@ -3,19 +3,6 @@
     <div class="tile is-ancestor">
       <div class="tile is-parent">
         <article class="tile is-child box">
-          <h1 class="title">Table Storage Settings</h1>
-          <div class="block">
-            <label class="label">ConnectionString</label>
-            <p class="control">
-              <input class="input is-medium" type="text" :value="tableStorageConnectionStr" placeholder="TableStorage ConnectionString" disabled>
-            </p>
-          </div>
-        </article>
-      </div>
-    </div>
-    <div class="tile is-ancestor">
-      <div class="tile is-parent">
-        <article class="tile is-child box">
           <h1 class="title">Azure Functions Settings</h1>
           <div class="block">
             <p class="control">

@@ -1,7 +1,7 @@
 {
-  "name": "knowledgebase-admin",
+  "name": "azure-functions-vuejs-sample-spa",
   "version": "0.0.1",
-  "description": "Hackfest KnowledgeBase Admin Panel",
+  "description": "Azure Functions & Vue.js Sample Panel",
   "repository": "https://github.com/ec1513079/AzureFunctionsVuejsSample.git",
   "homepage": "https://github.com/ec1513079/AzureFunctionsVuejsSample",
   "author": {
