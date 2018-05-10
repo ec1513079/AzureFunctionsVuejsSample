@@ -117,7 +117,7 @@ export default {
           process.env.AZURE_FUNCTIONS_ADMIN_API_ENDPOINT,
           apiName,
           '?code=' + process.env.AZURE_FUNCTIONS_ADMIN_API_KEY),
-        headers: { Authorization: 'Bearer ' + this.$store.state.authme.accessToken }
+        headers: { Authorization: 'Bearer ' + this.$store.state.authme.adminToken }
       }).then((data) => {
         console.log(data)
         this.adminApiStatus = {
