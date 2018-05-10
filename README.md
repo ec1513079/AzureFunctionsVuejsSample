@@ -23,8 +23,16 @@ npm install
 ```
 それでもダメなら管理者権限でプロンプトを立ち上げてnpm installを行う
 
-### サーバ
+### API 
 ```
+cd AzureFunctionsVuejsSample.Function
+func host start
+```
+
+### API (管理者用)
+```
+cd AzureFunctionsVuejsSample.AdminFunction
+func host start
 ```
 
 ## 構成
@@ -32,7 +40,7 @@ npm install
 * node >= 8.x
 * nmp >= 5.x
 * webpack >= 2.x
-### サーバ
+### API
 * azure-functions-core-tools >= 1.0.12
     * [Azure Functions Core Tools](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local)
 
