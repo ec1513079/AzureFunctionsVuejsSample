@@ -35,7 +35,7 @@ cd AzureFunctionsVuejsSample.AdminFunction
 func host start
 ```
 
-## 構成
+## 要件
 ### クライアント
 * node >= 8.x
 * nmp >= 5.x
@@ -44,3 +44,64 @@ func host start
 * azure-functions-core-tools >= 1.0.12
     * [Azure Functions Core Tools](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local)
 
+## フォルダ構成
+### クライアント
+```
+AzureFunctionsVuejsSample.Web
+  ├─build
+  │  ├# webpackビルドの実行スクリプトとconfigをまとめておいておくためのフォルダ
+  │  └# webpackビルドで変更がある以外はいじらなくてOK
+  ├─client
+  │  ├─assets
+  │  │  ├# Faviconやpng画像、単体で動くjs(webpackでコンパイルしないjs)等を置いておくフォルダ
+  │  │  ├# webpackでビルドすると、このフォルダが直接distフォルダに置かれるので、
+  │  │  └# Webサーバ配置時に公開したい資産はこのフォルダに集めておくこと。
+  │  ├─components
+  │  │  ├# 独自に作ったVueのコンポーネントを置くフォルダ
+  │  │  ├# 複数の画面で共有されるVueテンプレートや、各画面で部品として使うVueテンプレートは
+  │  │  └# コンポーネントとしてこのフォルダに置くこと
+  │  ├─filters
+  │  │  ├# 独自に作ったVueのフィルターを置くフォルダ
+  │  │  ├# Vueのフィルターについては https://jp.vuejs.org/v2/guide/filters.html を参照すること
+  │  │  ├# 簡単に言うと"{{ message | capitalize }}"みたいにパイプでつなげて値を変換していける機能
+  │  │  └# 独自に作れるメソッドチェーンと考えればOK
+  │  ├─plugins
+  │  │  ├# 独自に作ったVueのプラグインを置くフォルダ
+  │  │  ├# Vueのプラグインについては https://jp.vuejs.org/v2/guide/plugins.html を参照すること
+  │  │  └# 簡単に言うと"this.$プラグイン名"のようにグローバルスコープで参照できるユーティリティを追加できる機能
+  │  ├─router
+  │  │  ├# vue-routerの設定をまとめておくフォルダ
+  │  │  ├# vue-routerについては https://router.vuejs.org/ja/essentials/getting-started.html を参照
+  │  │  └# 独自のルーティングを追加する以外はいじらなくてOK
+  │  ├─store
+  │  │  ├modules
+  │  │  │  ├menu
+  │  │  │  │ └# サイドバーのメニュー用のモジュール
+  │  │  │  └# 独自に作ったVuexのモジュールをまとめておくフォルダ
+  │  │  ├actions.js
+  │  │  │  └# アクションのみのVuexをまとめて登録するファイル
+  │  │  ├getters.js
+  │  │  │  └# ゲッターのみのVuexをまとめて登録するファイル
+  │  │  ├index.js
+  │  │  │  ├# Vuexのルートファイル
+  │  │  │  └# modulesフォルダに独自のVuexモジュールを作ったらここで登録するのを忘れずに
+  │  │  ├# Vuexの各種設定やモジュールをまとめておくフォルダ
+  │  │  ├# Vuexについては https://vuex.vuejs.org/ja/intro.html を参照
+  │  │  ├# Vuexについて簡単説明することは難しいので、
+  │  │  └# とりあえず https://vuex.vuejs.org/ja/getting-started.html の最初の最初のセクションを読んでください
+  │  └─views
+  │     ├# アプリケーションの各画面を置くフォルダ
+  │     ├# 新しい画面を作る際はフォルダを切り、その中に作っていくこと
+  │     └# 画面ルートのファイル名は"inxex.js"にする
+  ├─config
+  │  ├index.js
+  │  │  └# 全環境共用の環境設定
+  │  ├dev.env.js
+  │  │  └# 開発環境の環境設定
+  │  ├prod.env.js
+  │  │  └# 本番環境の環境設定
+  │  └test.env.js
+  │     └# ユニットテスト実施時のの環境設定
+  └─dist
+      └# "npm run build"で作成されるパッケージフォルダ
+```
