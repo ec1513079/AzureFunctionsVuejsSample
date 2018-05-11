@@ -123,9 +123,11 @@ componentsフォルダには、各画面から参照される共通部品の単�
 ただし例外として、画面のindex.vueが巨大になりすぎるときに、index.vueと同階層にmodulesフォルダを切り、index.vueをモジュール分割することが許されます。
 
 例)
+
 - 画面としてはHoge画面のみが表示される
 - Hoge画面はFugaモジュール、Fooモジュール、Barモジュールで構成される
 - Fooモジュール、Barモジュールは他の画面からも利用できる
+
 ```
 client
   ├─components
