@@ -16,6 +16,16 @@ $prop=@{
 }
 $prop
 ```
+or
+```
+$prop=@{
+  location="japaneast"
+  group="ec-azdeploy-test"
+  template="azuredeploy.json"
+  parameters="appNamePrefix=ec-azdeploy-test"
+}
+$prop
+```
 2. Azure CLI Login & Create Resource Group
 ```
 az login
